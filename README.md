@@ -1,3 +1,5 @@
+# CENTRO POLITÉCNICO SUPERIOR MALVINAS ARGENTINAS - APRENDIZAJE AUTOMÁTICO
+# Alumna-FERNÁNDEZ, Ana María
 # Clase 4 – Regresión Lineal Múltiple (Presión Arterial)
 
 Este repositorio contiene la entrega de la **Clase 4** usando el dataset `dataset_regresion_multiple.csv` (separado por `;`). Se construye y evalúa un **modelo de regresión lineal múltiple** para predecir la **presión arterial**.
