@@ -48,26 +48,30 @@ pip install pandas numpy scikit-learn matplotlib
 ## Modelado
 
 ### Modelo completo (todas las variables)
-- Pipeline: `StandardScaler` + `LinearRegression`
-- Split: 80/20 (`random_state=42`)
-- **Métricas en test (completá con tus valores):**
-  - R²: `...`
-  - RMSE: `...` mmHg
-  - MAE: `...` mmHg
+### Métricas (test)
+
+**Modelo completo (todas las variables)**
+- R²: **0.708**
+- RMSE: **10.36** mmHg
+- MAE: **8.60** mmHg
+
+**Modelo simplificado (Top-3 por |corr|: peso, edad, estrés)**
+- R²: **0.652**
+- RMSE: **11.31** mmHg
+- MAE: **9.55** mmHg
+
+> Conclusión: el **modelo completo** ajusta mejor (↑R², ↓errores). El **Top-3** rinde cerca y es más interpretable, confirmando que **peso, edad y estrés** son los principales factores.
+
 
 Gráficos (en `figs/`):
 - `y_real_vs_pred_regresion_multiple.png`
 - `residuales_regresion_multiple.png`
 
-### Modelo simplificado (Top-3 por |corr|)
-- Variables: **peso**, **edad**, **estres** (verificá con tu EDA).
-- **Métricas en test (completá con tus valores):**
-  - R²: `...`
-  - RMSE: `...` mmHg
-  - MAE: `...` mmHg
+> En el primer gráfico (valores reales vs. predichos) los puntos van subiendo de izquierda a derecha, bastante cerca de la línea imaginaria “perfecta”. Esto dice que el modelo acierta la tendencia general: cuando la presión real es más alta, la predicción también sube. Igual se ve algo de dispersión: a veces el modelo se pasa o se queda corto unos 8–10 mmHg, que es lo que mostraron tus métricas.
 
-> Coeficientes estandarizados del modelo completo: `resultados/coef_modelo_completo.csv`.
-> (Opcional) **Ridge**: podés agregar R²/RMSE/MAE si lo corriste.
+En el histograma de residuales, la mayoría de los errores están cerca de cero y no aparecen valores extremos raros. Hay un poquito más de casos donde el modelo subestima (errores negativos) que donde sobrestima, pero no es algo grave.
+
+En resumen: el modelo funciona bien para este ejercicio. Capta la relación y comete errores moderados. Si quisieras afinarlo, podrías probar regularización (Ridge) o sumar más datos/variables para reducir esa dispersión.
 
 ---
 
