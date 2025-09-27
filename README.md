@@ -67,11 +67,11 @@ Gráficos (en `figs/`):
 - `y_real_vs_pred_regresion_multiple.png`
 - `residuales_regresion_multiple.png`
 
-> En el primer gráfico (valores reales vs. predichos) los puntos van subiendo de izquierda a derecha, bastante cerca de la línea imaginaria “perfecta”. Esto dice que el modelo acierta la tendencia general: cuando la presión real es más alta, la predicción también sube. Igual se ve algo de dispersión: a veces el modelo se pasa o se queda corto unos 8–10 mmHg, que es lo que mostraron tus métricas.
+- En el primer gráfico (valores reales vs. predichos) los puntos van subiendo de izquierda a derecha, bastante cerca de la línea imaginaria “perfecta”. Esto dice que el modelo acierta la tendencia general: cuando la presión real es más alta, la predicción también sube. Igual se ve algo de dispersión: a veces el modelo se pasa o se queda corto unos 8–10 mmHg, que es lo que mostraron tus métricas.
 
-En el histograma de residuales, la mayoría de los errores están cerca de cero y no aparecen valores extremos raros. Hay un poquito más de casos donde el modelo subestima (errores negativos) que donde sobrestima, pero no es algo grave.
+- En el histograma de residuales, la mayoría de los errores están cerca de cero y no aparecen valores extremos raros. Hay un poquito más de casos donde el modelo subestima (errores negativos) que donde sobrestima, pero no es algo grave.
 
-En resumen: el modelo funciona bien para este ejercicio. Capta la relación y comete errores moderados. Si quisieras afinarlo, podrías probar regularización (Ridge) o sumar más datos/variables para reducir esa dispersión.
+> En resumen, el modelo funciona bien para este ejercicio. Capta la relación y comete errores moderados. Si quisieras afinarlo, podrías probar regularización (Ridge) o sumar más datos/variables para reducir esa dispersión.
 
 ---
 
