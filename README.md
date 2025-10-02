@@ -85,3 +85,57 @@ Gráficos (en `figs/`):
 - Con **R² ≈ 0.7** y errores **~8–10 mmHg**, el ajuste es razonable para el ejercicio.
 
 ---
+# Ejercicio de Clasificación (Usuarios Win/Mac/Linux)
+
+Modelo de **clasificación multiclase** (Windows / Mac / Linux) con **Regresión Logística** usando `usuarios_win_mac_lin.csv`.
+---
+## Estructura
+
+clasificacion/
+├── Ejercicio_de_Clasificacion.ipynb
+├── figs/
+│   ├── matriz_confusion_usuarios.png
+│   └── roc_usuarios.png
+└── resultados/
+    ├── metricas.txt
+    ├── matriz_confusion_usuarios.csv
+    ├── reporte_clasificacion_usuarios.csv
+    └── coeficientes_logistica.csv
+---    
+## Modelo
+- `StandardScaler` + `LogisticRegression(multi_class="multinomial", solver="lbfgs", max_iter=500)`
+- Split 80/20 con `stratify=y`
+
+## Métricas (test)
+- **Accuracy general:** **70.59%**
+- **AUC (ROC OvR) por clase:** 0 (Windows) **0.75** · 1 (Mac) **0.95** · 2 (Linux) **0.90**
+
+**Matriz de confusión (conteos)**
+
+| Real \ Pred | Pred_0 | Pred_1 | Pred_2 |
+|---|---:|---:|---:|
+| **Real_0 (Win)** | 12 | 0 | 5 |
+| **Real_1 (Mac)** | 4 | 3 | 1 |
+| **Real_2 (Lin)** | 0 | 0 | 9 |
+
+---
+### Gráficos
+
+**ROC (OvR).** Las curvas muestran buena capacidad de separación: **Mac (AUC=0.95)** y **Linux (AUC=0.90)** se distinguen muy bien del resto; **Windows (AUC=0.75)** es el que más se confunde.
+
+**Matriz de confusión.** Los aciertos aparecen en la diagonal. Se ve que:
+- **Windows → Linux** concentra varios errores (5 casos).
+- **Mac** tiene **pocos falsos positivos** (alta precisión), pero se le **escapan** varios (baja recall): a veces el modelo los predice como Windows.
+- **Linux** casi no se pierde (recall alto), pero recibe algunas predicciones que **no eran Linux** (precisión más baja).
+
+> En resumen, el modelo funciona bien en general (~71% de acierto). Si queremos reducir esas confusiones, conviene probar **balance de clases** (`class_weight='balanced'`) o **modelos no lineales** (árboles/boosting) y revisar qué variables ayudan más a separar Windows/Mac/Linux.
+
+---
+## Conclusiones
+- Rendimiento global **razonable (~71%)**.  
+- **Windows (0):** errores hacia **Linux** (5 casos).  
+- **Mac (1):** **alta precisión** pero **baja recall** (se confunde con Windows).  
+- **Linux (2):** **recall 1.00** (no pierde Lin) pero **precisión 0.60** (se sobrepredice).  
+- Posibles mejoras: `class_weight='balanced'`, ajustar umbrales, probar árboles/boosting y selección de variables.
+---
+
